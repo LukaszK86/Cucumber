@@ -1,11 +1,10 @@
 package steps;
 
-
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginStep {
@@ -26,10 +25,16 @@ public class LoginStep {
 
     @And("^I enter the following for Login$")
     public void iEnterTheFollowingForLogin(DataTable table) throws Throwable {
-        List<List<String>> data = table.raw();
-        System.out.println(data.get(0).get(0).toString());
-        System.out.println(data.get(0).get(1).toString());
 
+//        System.out.println(data.get(0).get(0).toString());
+//        System.out.println(data.get(0).get(1).toString());
 
+        List<User> users = new ArrayList<User>();
+        users=table.asList(User.class);
+
+        for (User user: users){
+            System.out.println("The username is " + user.userName);
+            System.out.println("The password is " + user.password);
+        }
     }
 }
